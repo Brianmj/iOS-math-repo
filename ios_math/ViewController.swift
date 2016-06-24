@@ -17,8 +17,7 @@ class ViewController: UIViewController {
         let v1 = Vector3(x: 0, y: 0, z: 0)
         let v2 = Vector3(x: 4, y: 5, z: 6)
         let v3 = v1 - v2
-        print(v3)
-        print(v3 + v2)
+        print(-v3)
     }
 
     override func didReceiveMemoryWarning() {
