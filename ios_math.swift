@@ -16,7 +16,7 @@ extension Int {
 }
 
 extension Float {
-        var radiansToDegrees: Float {
+    var radiansToDegrees: Float {
         return Float(self) * Float(180.0) / Float(M_PI)
     }
 }
@@ -57,15 +57,16 @@ struct Vector3 {
         let l = length()
         return Vector3(x: self.x / l, y: y / l, z: z / l)
     }
-    
-    func dot(other: Vector3) -> Float {
-        return (x * other.x + y * other.y + z * other.z)
-    }
-    
-    func cross(other: Vector3) -> Vector3 {
-        return Vector3(x: (y * other.z) - (z * other.y), y: (z * other.x) - (x * other.z), z: (x * other.y) - (y * other.x))
-    }
 }
+
+func dot(left: Vector3, other: Vector3) -> Float {
+    return (left.x * other.x + left.y * other.y + left.z * other.z)
+}
+
+func cross(left: Vector3, other: Vector3) -> Vector3 {
+    return Vector3(x: (left.y * other.z) - (left.z * other.y), y: (left.z * other.x) - (left.x * other.z), z: (left.x * other.y) - (left.y * other.x))
+}
+
 
 struct Vector4 {
     var x, y, z, w: Float
@@ -105,22 +106,6 @@ struct Vector4 {
         w = v.w
     }
     
-    func add(other: Vector4) -> Vector4 {
-        return Vector4(x: x + other.x, y: y + other.y, z: z + other.z, w: w + other.w)
-    }
-    
-    func subtract(other: Vector4) -> Vector4 {
-        return Vector4(x: x - other.x, y: y - other.y, z: z - other.z, w: w - other.w)
-    }
-    
-    func multiply(scalar: Float) -> Vector4 {
-        return Vector4(x: x * scalar, y: y * scalar, z: z * scalar, w: w * scalar)
-    }
-    
-    func divide(scalar: Float) -> Vector4 {
-        return Vector4(x: x / scalar, y: y / scalar, z: z / scalar, w: w / scalar)
-    }
-    
     func length() -> Float {
         return sqrt(x * x + y * y + z * z + w * w)
     }
@@ -133,18 +118,23 @@ struct Vector4 {
     func dot(other: Vector4) -> Float {
         return (x * other.x + y * other.y + z * other.z + w * other.w)
     }
+}
+
+class Matrix4 {
+    // column major matrix
+    var elements: [Float] = [Float](repeating: 0.0, count: 16)
     
-    var array: [Float] {
-        get {
-            return [x, y, z, w]
-        }
-        
-        set {
-            x = newValue[0]
-            y = newValue[1]
-            z = newValue[2]
-            w = newValue[3]
-        }
+    init() {
+        _ = identity()
+    }
+    
+    func identity() -> Matrix4 {
+        elements = elements.map{_ in 0.0}
+        elements[0] = 1.0
+        elements[5] = 1.0
+        elements[10] = 1.0
+        elements[15] = 1.0
+        return self
     }
 }
 
@@ -196,8 +186,36 @@ prefix func - (v: Vector4) -> Vector4 {
     return Vector4(x: -v.x, y: -v.y, z: -v.z, w: -v.w)
 }
 
+extension Vector3 {
+    var array: [Float] {
+        get {
+            return [x, y, z]
+        }
+        
+        set {
+            x = newValue[0]
+            y = newValue[1]
+            z = newValue[2]
+        }
+    }
+}
+
 extension Vector4 {
     func toVector3() -> Vector3 {
         return Vector3(x: self.x, y: self.y, z: self.z)
     }
+    
+    var array: [Float] {
+        get {
+            return [x, y, z, w]
+        }
+        
+        set {
+            x = newValue[0]
+            y = newValue[1]
+            z = newValue[2]
+            w = newValue[3]
+        }
+    }
+    
 }

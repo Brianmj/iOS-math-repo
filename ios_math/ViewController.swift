@@ -14,10 +14,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let v1 = Vector3(x: 0, y: 0, z: 0)
-        let v2 = Vector3(x: 4, y: 5, z: 6)
-        let v3 = v1 - v2
-        print(-v3)
+        let m1 = Matrix4()
+        
     }
 
     override func didReceiveMemoryWarning() {
