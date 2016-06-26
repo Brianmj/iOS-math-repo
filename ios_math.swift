@@ -143,6 +143,15 @@ class Matrix4 {
         return m
     }
     
+    class func scale(x: Float, y: Float, z: Float) -> Matrix4 {
+        let m = Matrix4()
+        m.elements[0] = x
+        m.elements[5] = y
+        m.elements[10] = z
+        
+        return m
+    }
+    
     class func x_rotation(angle: Float) -> Matrix4 {
         let s = sin(angle)
         let c = cos(angle)
