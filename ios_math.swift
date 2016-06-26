@@ -142,6 +142,17 @@ class Matrix4 {
         m.column3 = Vector4(x: x, y: y, z: z, w: 1.0)
         return m
     }
+    
+    class func x_rotation(angle: Float) -> Matrix4 {
+        let s = sin(angle)
+        let c = cos(angle)
+        
+        let m = Matrix4()
+        m.column1 = Vector4(x: 0, y: c, z: s, w: 0.0)
+        m.column2 = Vector4(x: 0.0, y: -s, z: c, w: 0.0)
+        
+        return m
+    }
     class func y_rotation(angle: Float) -> Matrix4 {
         let s = sin(angle)
         let c = cos(angle)

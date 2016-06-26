@@ -14,8 +14,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let m1 = Matrix4.y_rotation(angle: 90.degreesToRadians)
-        let v1 = Vector4(x: 0.0, y: 0, z: -1.0, w: 0.0)
+        let m1 = Matrix4.x_rotation(angle: 90.degreesToRadians)
+        let v1 = Vector4(x: 0.0, y: 1.0, z: 0.0, w: 0.0)
         print(m1 * v1)
         
     }
