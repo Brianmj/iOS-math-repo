@@ -192,6 +192,16 @@ prefix func - (v: Vector4) -> Vector4 {
     return Vector4(x: -v.x, y: -v.y, z: -v.z, w: -v.w)
 }
 
+func * (m: Matrix4, v: Vector4) -> Vector4 {
+    var result = Vector4()
+    result.x = m.row0.dot(other: v)
+    result.y = m.row1.dot(other: v)
+    result.z = m.row2.dot(other: v)
+    result.w = m.row3.dot(other: v)
+    
+    return result
+}
+
 extension Vector3 {
     var array: [Float] {
         get {
