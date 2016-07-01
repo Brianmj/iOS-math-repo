@@ -120,12 +120,26 @@ struct Vector4 {
     }
 }
 
+class Matrix3 {
+    var elements: [Float] = [Float](repeatElement(0.0, count: 9))
+}
+
 class Matrix4 {
     // column major matrix
     var elements: [Float] = [Float](repeating: 0.0, count: 16)
     
     init() {
         _ = identity()
+    }
+    
+    init(arrayOfElements: [Float]) {
+        if arrayOfElements.count != 16 {
+            fatalError("arrayOfElements must be of count 16")
+        }
+        
+        for (index, val) in arrayOfElements.enumerated() {
+            elements[index] = val
+        }
     }
     
     func identity() -> Matrix4 {
@@ -242,6 +256,31 @@ func * (m: Matrix4, v: Vector4) -> Vector4 {
     return result
 }
 
+func * (m1: Matrix4, m2: Matrix4) -> Matrix4 {
+    let result = Matrix4()
+    result.elements[0] = m1.row0.dot(other: m2.column0)
+    result.elements[1] = m1.row0.dot(other: m2.column1)
+    result.elements[2] = m1.row0.dot(other: m2.column2)
+    result.elements[3] = m1.row0.dot(other: m2.column3)
+    
+    result.elements[4] = m1.row1.dot(other: m2.column0)
+    result.elements[5] = m1.row1.dot(other: m2.column1)
+    result.elements[6] = m1.row1.dot(other: m2.column2)
+    result.elements[7] = m1.row1.dot(other: m2.column3)
+    
+    result.elements[8] = m2.row2.dot(other: m2.column0)
+    result.elements[9] = m2.row2.dot(other: m2.column1)
+    result.elements[10] = m2.row2.dot(other: m2.column2)
+    result.elements[11] = m2.row2.dot(other: m2.column3)
+    
+    result.elements[12] = m1.row3.dot(other: m2.column0)
+    result.elements[13] = m1.row3.dot(other: m2.column1)
+    result.elements[14] = m1.row3.dot(other: m2.column2)
+    result.elements[15] = m1.row3.dot(other: m2.column3)
+    
+    return result
+}
+
 extension Vector3 {
     var array: [Float] {
         get {
@@ -276,6 +315,14 @@ extension Vector4 {
 }
 
 extension Matrix4 {
+    
+    var toMatrix3: Matrix3 {
+        get {
+            let m = Matrix3()
+            
+            return m
+        }
+    }
     var row0: Vector4 {
         get {
             return Vector4(x: elements[0], y: elements[4], z: elements[8], w: elements[12])
