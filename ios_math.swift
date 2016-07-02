@@ -258,25 +258,25 @@ func * (m: Matrix4, v: Vector4) -> Vector4 {
 
 func * (m1: Matrix4, m2: Matrix4) -> Matrix4 {
     let result = Matrix4()
-    result.elements[0] = m1.row0.dot(other: m2.column0)
-    result.elements[1] = m1.row0.dot(other: m2.column1)
-    result.elements[2] = m1.row0.dot(other: m2.column2)
-    result.elements[3] = m1.row0.dot(other: m2.column3)
+    result.elements[0] = m1.column0.dot(other: m2.row0)
+    result.elements[1] = m1.column0.dot(other: m2.row1)
+    result.elements[2] = m1.column0.dot(other: m2.row2)
+    result.elements[3] = m1.column0.dot(other: m2.row3)
     
-    result.elements[4] = m1.row1.dot(other: m2.column0)
-    result.elements[5] = m1.row1.dot(other: m2.column1)
-    result.elements[6] = m1.row1.dot(other: m2.column2)
-    result.elements[7] = m1.row1.dot(other: m2.column3)
+    result.elements[4] = m1.column1.dot(other: m2.row0)
+    result.elements[5] = m1.column1.dot(other: m2.row1)
+    result.elements[6] = m1.column1.dot(other: m2.row2)
+    result.elements[7] = m1.column1.dot(other: m2.row3)
     
-    result.elements[8] = m2.row2.dot(other: m2.column0)
-    result.elements[9] = m2.row2.dot(other: m2.column1)
-    result.elements[10] = m2.row2.dot(other: m2.column2)
-    result.elements[11] = m2.row2.dot(other: m2.column3)
+    result.elements[8] = m2.column2.dot(other: m2.row0)
+    result.elements[9] = m2.column2.dot(other: m2.row1)
+    result.elements[10] = m2.column2.dot(other: m2.row2)
+    result.elements[11] = m2.column2.dot(other: m2.row3)
     
-    result.elements[12] = m1.row3.dot(other: m2.column0)
-    result.elements[13] = m1.row3.dot(other: m2.column1)
-    result.elements[14] = m1.row3.dot(other: m2.column2)
-    result.elements[15] = m1.row3.dot(other: m2.column3)
+    result.elements[12] = m1.column3.dot(other: m2.row0)
+    result.elements[13] = m1.column3.dot(other: m2.row1)
+    result.elements[14] = m1.column3.dot(other: m2.row2)
+    result.elements[15] = m1.column3.dot(other: m2.row3)
     
     return result
 }
