@@ -319,6 +319,20 @@ extension Matrix4 {
     var toMatrix3: Matrix3 {
         get {
             let m = Matrix3()
+            let c0 = column0
+            m.elements[0] = c0.x
+            m.elements[1] = c0.y
+            m.elements[2] = c0.z
+            
+            let c1 = column1
+            m.elements[3] = c1.x
+            m.elements[4] = c1.y
+            m.elements[5] = c1.z
+            
+            let c2 = column2
+            m.elements[6] = c2.x
+            m.elements[7] = c2.y
+            m.elements[8] = c2.z
             
             return m
         }

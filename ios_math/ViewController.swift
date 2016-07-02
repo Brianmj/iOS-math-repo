@@ -17,6 +17,7 @@ class ViewController: UIViewController {
         let m1 = Matrix4(arrayOfElements: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
         let v1 = Vector4(x: 0.0, y: 2.0, z: 0.5, w: 0.0)
         print((m1 * m1).elements)
+        print(m1.toMatrix3.elements)
         
     }
 
